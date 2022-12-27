@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="665.0" prefWidth="1349.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fabsatgroundstation.HomePageController">
+  <children>
+    <MenuBar prefWidth="755.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ComboBox fx:id="comPortComboBox" layoutX="72.0" layoutY="14.0" prefWidth="150.0" promptText="Select" />
+            <Button fx:id="connectbutton" layoutX="234.0" layoutY="14.0" mnemonicParsing="false" onAction="#connectButtonClicked" text="Connect" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#scanButtonclicked" text="Scan" />
+            <TextArea fx:id="textArea" layoutX="14.0" layoutY="111.0" prefHeight="92.0" prefWidth="478.0" />
+            <Button fx:id="disconnectbutton" layoutX="311.0" layoutY="14.0" mnemonicParsing="false" onAction="#disconnectButtonClicked" text="Disconnect" />
+            <Label layoutX="93.0" layoutY="59.0" text="FabSat #1041">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="altitudechart" layoutX="18.0" layoutY="236.0" prefHeight="164.0" prefWidth="285.0" title="Altitude">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="tempchart" layoutX="287.0" layoutY="234.0" prefHeight="164.0" prefWidth="285.0" title="Temperature">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" fx:id="x1" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="y1" side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <LineChart fx:id="voltageChart" layoutX="544.0" layoutY="236.0" prefHeight="164.0" prefWidth="285.0" title="Voltage">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" fx:id="x2" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="y2" side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <LineChart fx:id="titleXChart" layoutX="813.0" layoutY="234.0" prefHeight="164.0" prefWidth="285.0" title="Tilt_X">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" fx:id="x11" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="y11" side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <LineChart fx:id="titlYChart" layoutX="1086.0" layoutY="233.0" prefHeight="164.0" prefWidth="285.0" title="Tilt_Y">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" fx:id="x111" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="y111" side="LEFT" />
+               </yAxis>
+            </LineChart>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
