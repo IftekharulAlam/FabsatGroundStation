@@ -93,7 +93,7 @@
             <ComboBox fx:id="comPortComboBox" layoutX="72.0" layoutY="14.0" prefWidth="150.0" promptText="Select" />
             <Button fx:id="connectbutton" layoutX="234.0" layoutY="14.0" mnemonicParsing="false" onAction="#connectButtonClicked" text="Connect" />
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#scanButtonclicked" text="Scan" />
-            <TextArea fx:id="textArea" layoutX="14.0" layoutY="111.0" prefHeight="92.0" prefWidth="478.0" />
+            <TextArea fx:id="textArea" layoutX="14.0" layoutY="111.0" prefHeight="92.0" prefWidth="691.0" />
             <Button fx:id="disconnectbutton" layoutX="311.0" layoutY="14.0" mnemonicParsing="false" onAction="#disconnectButtonClicked" text="Disconnect" />
             <Label layoutX="93.0" layoutY="59.0" text="FabSat #1041">
                <font>

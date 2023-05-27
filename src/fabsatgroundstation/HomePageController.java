@@ -22,11 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javax.swing.JOptionPane;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  * FXML Controller class
@@ -81,6 +76,26 @@ public class HomePageController implements Initializable {
     XYChart.Series series;
     XYChart.Series series1;
     XYChart.Series series2;
+    private String TEAM_ID = "";
+    private String MISSION_TIME = "";
+    private String PACKET_COUNT = "";
+    private String MODE = "";
+    private String STATE = "";
+    private String ALTITUDE = "";
+    private String HS_DEPLOYED = "";
+    private String PC_DEPLOYED = "";
+    private String MAST_RAISED = "";
+    private String TEMPERATURE = "";
+    private String PRESSURE = "";
+    private String VOLTAGE = "";
+    private String GPS_TIME = "";
+    private String GPS_ALTITUDE = "";
+    private String GPS_LATITUDE = "";
+    private String GPS_LONGITUDE = "";
+    private String GPS_SATS = "";
+    private String TILT_X = "";
+    private String TILT_Y = "";
+    private String CMD_ECHO = "";
 
     /**
      * Initializes the controller class.
@@ -123,16 +138,37 @@ public class HomePageController implements Initializable {
                 public void run() {
                     while (true) {
                         try {
-                            Thread.sleep(1000);
                             String s = sensorData.read();
+                            String array[] = s.split(",");
+                            int y = Integer.parseInt(array[2]);
+                            TEAM_ID = array[0];
+                            MISSION_TIME = array[1];
+                            PACKET_COUNT = array[2];
+                            MODE = array[3];
+                            STATE = array[4];
+                            ALTITUDE = array[5];
+                            HS_DEPLOYED = array[6];
+                            PC_DEPLOYED = array[7];
+                            MAST_RAISED = array[8];
+                            TEMPERATURE = array[9];
+                            PRESSURE = array[10];
+                            VOLTAGE = array[11];
+                            GPS_TIME = array[12];
+                            GPS_ALTITUDE = array[13];
+                            GPS_LATITUDE = array[14];
+                            GPS_LONGITUDE = array[15];
+                            GPS_SATS = array[16];
+                            TILT_X = array[17];
+                            TILT_Y = array[18];
+                            CMD_ECHO = array[19];
+
                             textArea.appendText(s);
                             textArea.appendText("\n");
-                            series.getData().add(new XYChart.Data(s, 15));
+                            series.getData().add(new XYChart.Data(array[2], y));
                             altitudechart.getData().add(series);
-                            series1.getData().add(new XYChart.Data(s, 15));
-
+                            series1.getData().add(new XYChart.Data(array[2], y));
                             tempchart.getData().add(series1);
-
+                            Thread.sleep(1000);
                         } catch (Exception e) {
 
                         }
