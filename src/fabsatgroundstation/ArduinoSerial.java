@@ -16,8 +16,6 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import gnu.io.UnsupportedCommOperationException;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -58,7 +56,7 @@ public class ArduinoSerial implements SerialPortEventListener {
     /**
      * Default bits per second for COM port.
      */
-    private static final int DATA_RATE = 9600;
+    private static final int DATA_RATE = 115200;
 
     private String inputLine;
 
@@ -112,62 +110,62 @@ public class ArduinoSerial implements SerialPortEventListener {
         }
     }
 
-    public void saveToCSV(
-            String TEAM_ID,
-            String MISSION_TIME,
-            String PACKET_COUNT,
-            String MODE,
-            String STATE,
-            String ALTITUDE,
-            String HS_DEPLOYED, String PC_DEPLOYED, String MAST_RAISED, String TEMPERATURE, String PRESSURE, String VOLTAGE,
-            String GPS_TIME, String GPS_ALTITUDE, String GPS_LATITUDE, String GPS_LONGITUDE, String GPS_SATS,
-            String TILT_X, String TILT_Y, String CMD_ECHO) {
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-
-        try {
-
-            fw = new FileWriter("1041.csv", true);;
-
-        } catch (Exception ex) {
-
-        }
-
-        bw = new BufferedWriter(fw);
-
-        try {
-            String data = MISSION_TIME + ","
-                    + PACKET_COUNT + ","
-                    + MODE + ","
-                    + STATE + ","
-                    + ALTITUDE + ","
-                    + HS_DEPLOYED + ","
-                    + PC_DEPLOYED + ","
-                    + MAST_RAISED + ","
-                    + TEMPERATURE + ","
-                    + PRESSURE + ","
-                    + VOLTAGE + ","
-                    + GPS_TIME + ","
-                    + GPS_ALTITUDE + ","
-                    + GPS_LATITUDE + ","
-                    + GPS_LONGITUDE + ","
-                    + GPS_SATS + ","
-                    + TILT_X + ","
-                    + TILT_Y + ","
-                    + CMD_ECHO;
-            bw.write(data);
-            bw.write("\n");
-        } catch (IOException ex) {
-
-        } finally {
-            try {
-                bw.close();
-
-            } catch (Exception ex) {
-
-            }
-        }
-    }
+//    public void saveToCSV(
+//            String TEAM_ID,
+//            String MISSION_TIME,
+//            String PACKET_COUNT,
+//            String MODE,
+//            String STATE,
+//            String ALTITUDE,
+//            String HS_DEPLOYED, String PC_DEPLOYED, String MAST_RAISED, String TEMPERATURE, String PRESSURE, String VOLTAGE,
+//            String GPS_TIME, String GPS_ALTITUDE, String GPS_LATITUDE, String GPS_LONGITUDE, String GPS_SATS,
+//            String TILT_X, String TILT_Y, String CMD_ECHO) {
+//        FileWriter fw = null;
+//        BufferedWriter bw = null;
+//
+//        try {
+//
+//            fw = new FileWriter("1041.csv", true);;
+//
+//        } catch (Exception ex) {
+//
+//        }
+//
+//        bw = new BufferedWriter(fw);
+//
+//        try {
+//            String data = MISSION_TIME + ","
+//                    + PACKET_COUNT + ","
+//                    + MODE + ","
+//                    + STATE + ","
+//                    + ALTITUDE + ","
+//                    + HS_DEPLOYED + ","
+//                    + PC_DEPLOYED + ","
+//                    + MAST_RAISED + ","
+//                    + TEMPERATURE + ","
+//                    + PRESSURE + ","
+//                    + VOLTAGE + ","
+//                    + GPS_TIME + ","
+//                    + GPS_ALTITUDE + ","
+//                    + GPS_LATITUDE + ","
+//                    + GPS_LONGITUDE + ","
+//                    + GPS_SATS + ","
+//                    + TILT_X + ","
+//                    + TILT_Y + ","
+//                    + CMD_ECHO;
+//            bw.write(data);
+//            bw.write("\n");
+//        } catch (IOException ex) {
+//
+//        } finally {
+//            try {
+//                bw.close();
+//
+//            } catch (Exception ex) {
+//
+//            }
+//        }
+//    }
 
     public void writeInt(int data) {
         try {
