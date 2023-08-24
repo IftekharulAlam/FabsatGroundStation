@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="698.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fabsatgroundstation.MyFileController">
+<VBox prefHeight="698.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fabsatgroundstation.MyFileController">
    <children>
       <MenuBar VBox.vgrow="NEVER">
          <menus>
@@ -167,24 +167,24 @@
             </RadioButton>
             <Text fill="#434343" layoutX="828.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HS_DEPLOYED" />
             <Line endX="131.0" layoutX="972.0" layoutY="130.0" startX="-148.0" stroke="#757575" strokeWidth="0.5" />
-            <RadioButton accessibleRole="THUMB" layoutX="964.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="C">
+            <RadioButton fx:id="pc_deployed_C_radioButton" accessibleRole="THUMB" layoutX="964.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="C">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton accessibleRole="THUMB" layoutX="1050.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="54.0" text="N">
+            <RadioButton fx:id="pc_deployed_N_radioButton" accessibleRole="THUMB" layoutX="1050.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="54.0" text="N">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </RadioButton>
             <Text fill="#434343" layoutX="828.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC_DEPLOYED" />
             <Line endX="131.0" layoutX="972.0" layoutY="183.0" startX="-148.0" stroke="#757575" strokeWidth="0.5" />
-            <RadioButton accessibleRole="THUMB" layoutX="964.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="M">
+            <RadioButton fx:id="mast_raised_M_radioButton" accessibleRole="THUMB" layoutX="964.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="M">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton accessibleRole="THUMB" layoutX="1050.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="54.0" text="N">
+            <RadioButton fx:id="mast_raised_N_radioButton" accessibleRole="THUMB" layoutX="1050.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="54.0" text="N">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>

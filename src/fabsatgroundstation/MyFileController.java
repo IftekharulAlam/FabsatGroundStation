@@ -36,9 +36,14 @@ public class MyFileController implements Initializable {
     private String myPort = "";
     private ArduinoSerial sensorData;
     private Thread t;
-    XYChart.Series series;
-    XYChart.Series series1;
-    XYChart.Series series2;
+    XYChart.Series series_altitude;
+    XYChart.Series series_temparature;
+    XYChart.Series series_gps_altitude;
+    XYChart.Series series_voltage;
+    XYChart.Series series_tilt_x;
+    XYChart.Series series_tilt_y;
+    XYChart.Series series_pressure;
+
     private String TEAM_ID = "";
     private String MISSION_TIME = "";
     private String PACKET_COUNT = "";
@@ -59,6 +64,7 @@ public class MyFileController implements Initializable {
     private String TILT_X = "";
     private String TILT_Y = "";
     private String CMD_ECHO = "";
+    private int y_data = 0;
 
     @FXML
     private ComboBox comPortComboBox;
@@ -120,6 +126,14 @@ public class MyFileController implements Initializable {
     private LineChart gPSaltitudechart;
     @FXML
     private Button sendButton;
+    @FXML
+    private RadioButton pc_deployed_C_radioButton;
+    @FXML
+    private RadioButton pc_deployed_N_radioButton;
+    @FXML
+    private RadioButton mast_raised_M_radioButton;
+    @FXML
+    private RadioButton mast_raised_N_radioButton;
 
     /**
      * Initializes the controller class.
@@ -172,12 +186,42 @@ public class MyFileController implements Initializable {
         } else {
             sensorData = new ArduinoSerial(myPort);
             sensorData.initialize();
-            series = new XYChart.Series();
-            series.getData().add(new XYChart.Data("2011", 15));
-            altitudechart.getData().add(series);
-            series1 = new XYChart.Series();
-            series1.getData().add(new XYChart.Data("2010", 12));
-            temperatureChart.getData().add(series1);
+//            series = new XYChart.Series();
+//            series.getData().add(new XYChart.Data("2011", 15));
+//            altitudechart.getData().add(series);
+//            series1 = new XYChart.Series();
+//            series1.getData().add(new XYChart.Data("2010", 12));
+//            temperatureChart.getData().add(series1);
+//            
+            series_altitude = new XYChart.Series();
+
+            series_altitude.getData().add(new XYChart.Data("2011", 15));
+            altitudechart.getData().add(series_altitude);
+
+            series_temparature = new XYChart.Series();
+            series_temparature.getData().add(new XYChart.Data("2011", 15));
+            temperatureChart.getData().add(series_temparature);
+
+            series_gps_altitude = new XYChart.Series();
+            series_gps_altitude.getData().add(new XYChart.Data("2011", 15));
+            gPSaltitudechart.getData().add(series_gps_altitude);
+
+            series_voltage = new XYChart.Series();
+            series_voltage.getData().add(new XYChart.Data("2011", 15));
+            voltageChart.getData().add(series_voltage);
+
+            series_tilt_x = new XYChart.Series();
+            series_tilt_x.getData().add(new XYChart.Data("2011", 15));
+            titleXChart.getData().add(series_tilt_x);
+
+            series_tilt_y = new XYChart.Series();
+            series_tilt_y.getData().add(new XYChart.Data("2011", 15));
+            titlYChart.getData().add(series_tilt_y);
+
+            series_pressure = new XYChart.Series();
+            series_pressure.getData().add(new XYChart.Data("2011", 15));
+            pressureChart.getData().add(series_pressure);
+
             t = new Thread() {
                 @Override
                 public void run() {
@@ -189,7 +233,7 @@ public class MyFileController implements Initializable {
                             if (s.length() > 10) {
 
                                 String array[] = s.split(",");
-                                int y = Integer.parseInt(array[2]);
+                                y_data = Integer.parseInt(array[2]);
 
                                 TEAM_ID = array[0];
                                 MISSION_TIME = array[1];
@@ -214,16 +258,58 @@ public class MyFileController implements Initializable {
                                 telemetryLogTextArea.appendText(s);
                                 telemetryLogTextArea.appendText("\n");
                             }
-                            series.getData().add(new XYChart.Data(ALTITUDE, y));
-                            altitudechart.getData().add(series);
-                            series1.getData().add(new XYChart.Data(TEMPERATURE, y));
-                            temperatureChart.getData().add(series1);
-                            if (HS_DEPLOYED == "P") {
+
+                            try {
+                                series_altitude.getData().add(new XYChart.Data(ALTITUDE, y_data));
+                                altitudechart.getData().add(series_altitude);
+
+                                series_temparature.getData().add(new XYChart.Data(TEMPERATURE, y_data));
+                                temperatureChart.getData().add(series_temparature);
+
+                                series_gps_altitude.getData().add(new XYChart.Data(GPS_ALTITUDE, y_data));
+                                altitudechart.getData().add(series_gps_altitude);
+
+                                series_voltage.getData().add(new XYChart.Data(VOLTAGE, y_data));
+                                temperatureChart.getData().add(series_voltage);
+
+                                series_tilt_x.getData().add(new XYChart.Data(TILT_X, y_data));
+                                altitudechart.getData().add(series_tilt_x);
+
+                                series_tilt_y.getData().add(new XYChart.Data(TILT_Y, y_data));
+                                temperatureChart.getData().add(series_tilt_y);
+
+                                series_pressure.getData().add(new XYChart.Data(PRESSURE, y_data));
+                                altitudechart.getData().add(series_pressure);
+
+                            } catch (Exception e) {
+
+                            }
+
+                            if (HS_DEPLOYED.matches("P")) {
+                                System.out.println("Detected");
                                 hs_deployed_P_radioButton.setSelected(true);
                                 hs_deployed_N_radioButton.setSelected(false);
                             } else {
                                 hs_deployed_P_radioButton.setSelected(false);
                                 hs_deployed_N_radioButton.setSelected(true);
+
+                            }
+                            if (PC_DEPLOYED.matches("C")) {
+                                System.out.println("Detected");
+                                pc_deployed_C_radioButton.setSelected(true);
+                                pc_deployed_N_radioButton.setSelected(false);
+                            } else {
+                                pc_deployed_C_radioButton.setSelected(false);
+                                pc_deployed_N_radioButton.setSelected(true);
+
+                            }
+                            if (MAST_RAISED.matches("M")) {
+                                System.out.println("Detected");
+                                mast_raised_M_radioButton.setSelected(true);
+                                mast_raised_N_radioButton.setSelected(false);
+                            } else {
+                                mast_raised_M_radioButton.setSelected(false);
+                                mast_raised_N_radioButton.setSelected(true);
 
                             }
 
