@@ -9,6 +9,7 @@ import gnu.io.CommPortIdentifier;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -141,6 +142,18 @@ public class MyFileController implements Initializable {
     private Label teamID_label;
     @FXML
     private Text cmd_echo_label;
+    @FXML
+    private Label my;
+    @FXML
+    private Label gps_time_label;
+    @FXML
+    private Label gps_altitude_label;
+    @FXML
+    private Label no_of_sats_label;
+    @FXML
+    private Label gps_longitude_label;
+    @FXML
+    private Label gps_lattitude_label2;
 
     /**
      * Initializes the controller class.
@@ -186,6 +199,7 @@ public class MyFileController implements Initializable {
 
     @FXML
     private void connectButtonClicked(ActionEvent event) {
+
         myPort = comPortComboBox.getValue().toString();
 
         if (myPort.isEmpty()) {
@@ -263,12 +277,26 @@ public class MyFileController implements Initializable {
                                 CMD_ECHO = array[19];
                                 telemetryLogTextArea.appendText(s);
                                 telemetryLogTextArea.appendText("\n");
-                                missionTimeRectangle.setText(MISSION_TIME);
-                                packet_count_received.setText(PACKET_COUNT);
-                                teamID_label.setText(TEAM_ID);
+
                             }
 
                             try {
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //GUI STUFF
+                                        teamID_label.setText(TEAM_ID);
+                                        missionTimeRectangle.setText(MISSION_TIME);
+                                        packet_count_received.setText(PACKET_COUNT);
+                                        cmd_echo_label.setText(CMD_ECHO);
+                                        gps_time_label.setText(GPS_TIME);
+                                        gps_altitude_label.setText(GPS_ALTITUDE);
+                                        no_of_sats_label.setText(GPS_SATS);
+                                        gps_longitude_label.setText(GPS_LONGITUDE);
+                                        gps_lattitude_label2.setText(GPS_LATITUDE);
+
+                                    }
+                                });
 
                                 if (HS_DEPLOYED.matches("P")) {
                                     hs_deployed_P_radioButton.setSelected(true);

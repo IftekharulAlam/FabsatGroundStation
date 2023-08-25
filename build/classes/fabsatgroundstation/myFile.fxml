@@ -56,7 +56,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f6faff" height="150.0" layoutX="11.0" layoutY="77.0" stroke="#686868" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="50.0" strokeType="INSIDE" strokeWidth="0.5" width="320.0" />
             <ComboBox fx:id="comPortComboBox" layoutX="118.0" layoutY="98.0" prefHeight="44.0" prefWidth="179.0" promptText="Select COM port" />
             <Button layoutX="32.0" layoutY="98.0" mnemonicParsing="false" onAction="#scanButtonclicked" prefHeight="44.0" prefWidth="74.0" text="Scan" />
-            <Label layoutX="5.0" layoutY="17.0" text="FabSat #1041">
+            <Label fx:id="my" layoutX="5.0" layoutY="17.0" text="FabSat #1041">
                <font>
                   <Font name="Century Gothic Bold" size="29.0" />
                </font>
@@ -94,15 +94,14 @@
                </font>
             </RadioButton>
             <Line endX="131.0" layoutX="175.0" layoutY="482.0" startX="-148.0" stroke="#757575" strokeWidth="0.5" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="37.0" layoutX="176.0" layoutY="433.0" stroke="WHITE" strokeType="INSIDE" width="123.0" />
             <Text fill="#434343" layoutX="28.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEAM_ID" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="37.0" layoutX="178.0" layoutY="493.0" stroke="WHITE" strokeType="INSIDE" width="123.0" />
             <Label fx:id="teamID_label" layoutX="218.0" layoutY="441.0" text="0000" textFill="#545454">
                <font>
                   <Font name="Century Gothic Bold" size="17.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="37.0" layoutX="178.0" layoutY="493.0" stroke="WHITE" strokeType="INSIDE" width="123.0" />
-            <Label fx:id="missionTimeRectangle" layoutX="194.0" layoutY="501.0" text="00:00:00.00">
+            <Label fx:id="missionTimeRectangle" layoutX="196.0" layoutY="498.0" text="00:00:00.00">
                <font>
                   <Font name="Roboto Bold" size="17.0" />
                </font>
@@ -209,14 +208,14 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcf5f1" height="236.0" layoutX="807.0" layoutY="242.0" stroke="#754b4b" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.5" width="320.0" />
             <Text fill="#434343" layoutX="829.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GPS_TIME" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="37.0" layoutX="977.0" layoutY="259.0" stroke="WHITE" strokeType="INSIDE" width="123.0" />
-            <Label layoutX="993.0" layoutY="265.0" text="00:.00:00 PM">
+            <Label fx:id="gps_time_label" layoutX="993.0" layoutY="265.0" text="00:.00:00 PM">
                <font>
                   <Font name="Roboto Bold" size="17.0" />
                </font>
             </Label>
             <Text fill="#434343" layoutX="830.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GPS_ALTITUDE(m)" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="37.0" layoutX="957.0" layoutY="307.0" stroke="WHITE" strokeType="INSIDE" width="142.0" />
-            <Label layoutX="1057.0" layoutY="316.0" text="00.0">
+            <Label fx:id="gps_altitude_label" layoutX="1008.0" layoutY="314.0" text="00.0">
                <font>
                   <Font name="Roboto Bold" size="17.0" />
                </font>
@@ -226,7 +225,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="44.0" layoutX="824.0" layoutY="420.0" stroke="WHITE" strokeType="INSIDE" width="142.0" />
             <Text fill="#434343" layoutX="830.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NO_OF_SAT" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="37.0" layoutX="1006.0" layoutY="352.0" stroke="WHITE" strokeType="INSIDE" width="93.0" />
-            <Label layoutX="1072.0" layoutY="361.0" text="00">
+            <Label fx:id="no_of_sats_label" layoutX="1072.0" layoutY="361.0" text="00">
                <font>
                   <Font name="Roboto Bold" size="17.0" />
                </font>
@@ -256,6 +255,16 @@
             <Label layoutX="837.0" layoutY="516.0" text="Telemetry">
                <font>
                   <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="gps_longitude_label" layoutX="889.0" layoutY="430.0" text="00.0">
+               <font>
+                  <Font name="Roboto Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="gps_lattitude_label2" layoutX="1034.0" layoutY="430.0" text="00.0">
+               <font>
+                  <Font name="Roboto Bold" size="17.0" />
                </font>
             </Label>
          </children>
