@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javax.swing.JOptionPane;
 
 /**
@@ -134,6 +135,12 @@ public class MyFileController implements Initializable {
     private RadioButton mast_raised_M_radioButton;
     @FXML
     private RadioButton mast_raised_N_radioButton;
+    @FXML
+    private Label packet_count_received;
+    @FXML
+    private Label teamID_label;
+    @FXML
+    private Text cmd_echo_label;
 
     /**
      * Initializes the controller class.
@@ -194,7 +201,6 @@ public class MyFileController implements Initializable {
 //            temperatureChart.getData().add(series1);
 //            
             series_altitude = new XYChart.Series();
-
             series_altitude.getData().add(new XYChart.Data("2011", 15));
             altitudechart.getData().add(series_altitude);
 
@@ -245,8 +251,8 @@ public class MyFileController implements Initializable {
                                 PC_DEPLOYED = array[7];
                                 MAST_RAISED = array[8];
                                 TEMPERATURE = array[9];
-                                PRESSURE = array[10];
-                                VOLTAGE = array[11];
+                                VOLTAGE = array[10];
+                                PRESSURE = array[11];
                                 GPS_TIME = array[12];
                                 GPS_ALTITUDE = array[13];
                                 GPS_LATITUDE = array[14];
@@ -257,9 +263,49 @@ public class MyFileController implements Initializable {
                                 CMD_ECHO = array[19];
                                 telemetryLogTextArea.appendText(s);
                                 telemetryLogTextArea.appendText("\n");
+                                missionTimeRectangle.setText(MISSION_TIME);
+                                packet_count_received.setText(PACKET_COUNT);
+                                teamID_label.setText(TEAM_ID);
                             }
 
                             try {
+
+                                if (HS_DEPLOYED.matches("P")) {
+                                    hs_deployed_P_radioButton.setSelected(true);
+                                    hs_deployed_N_radioButton.setSelected(false);
+                                } else {
+                                    hs_deployed_P_radioButton.setSelected(false);
+                                    hs_deployed_N_radioButton.setSelected(true);
+
+                                }
+                                if (PC_DEPLOYED.matches("C")) {
+                                    System.out.println("Detected");
+                                    pc_deployed_C_radioButton.setSelected(true);
+                                    pc_deployed_N_radioButton.setSelected(false);
+                                } else {
+                                    pc_deployed_C_radioButton.setSelected(false);
+                                    pc_deployed_N_radioButton.setSelected(true);
+
+                                }
+                                if (MAST_RAISED.matches("M")) {
+
+                                    mast_raised_M_radioButton.setSelected(true);
+                                    mast_raised_N_radioButton.setSelected(false);
+                                } else {
+                                    mast_raised_M_radioButton.setSelected(false);
+                                    mast_raised_N_radioButton.setSelected(true);
+
+                                }
+                                if (MODE.matches("F")) {
+
+                                    modeF.setSelected(true);
+                                    modeS.setSelected(false);
+                                } else {
+                                    modeF.setSelected(false);
+                                    modeS.setSelected(true);
+
+                                }
+
                                 series_altitude.getData().add(new XYChart.Data(ALTITUDE, y_data));
                                 altitudechart.getData().add(series_altitude);
 
@@ -267,49 +313,21 @@ public class MyFileController implements Initializable {
                                 temperatureChart.getData().add(series_temparature);
 
                                 series_gps_altitude.getData().add(new XYChart.Data(GPS_ALTITUDE, y_data));
-                                altitudechart.getData().add(series_gps_altitude);
+                                gPSaltitudechart.getData().add(series_gps_altitude);
 
                                 series_voltage.getData().add(new XYChart.Data(VOLTAGE, y_data));
-                                temperatureChart.getData().add(series_voltage);
+                                voltageChart.getData().add(series_voltage);
 
                                 series_tilt_x.getData().add(new XYChart.Data(TILT_X, y_data));
-                                altitudechart.getData().add(series_tilt_x);
+                                titleXChart.getData().add(series_tilt_x);
 
                                 series_tilt_y.getData().add(new XYChart.Data(TILT_Y, y_data));
-                                temperatureChart.getData().add(series_tilt_y);
+                                titlYChart.getData().add(series_tilt_y);
 
                                 series_pressure.getData().add(new XYChart.Data(PRESSURE, y_data));
-                                altitudechart.getData().add(series_pressure);
+                                pressureChart.getData().add(series_pressure);
 
                             } catch (Exception e) {
-
-                            }
-
-                            if (HS_DEPLOYED.matches("P")) {
-                                System.out.println("Detected");
-                                hs_deployed_P_radioButton.setSelected(true);
-                                hs_deployed_N_radioButton.setSelected(false);
-                            } else {
-                                hs_deployed_P_radioButton.setSelected(false);
-                                hs_deployed_N_radioButton.setSelected(true);
-
-                            }
-                            if (PC_DEPLOYED.matches("C")) {
-                                System.out.println("Detected");
-                                pc_deployed_C_radioButton.setSelected(true);
-                                pc_deployed_N_radioButton.setSelected(false);
-                            } else {
-                                pc_deployed_C_radioButton.setSelected(false);
-                                pc_deployed_N_radioButton.setSelected(true);
-
-                            }
-                            if (MAST_RAISED.matches("M")) {
-                                System.out.println("Detected");
-                                mast_raised_M_radioButton.setSelected(true);
-                                mast_raised_N_radioButton.setSelected(false);
-                            } else {
-                                mast_raised_M_radioButton.setSelected(false);
-                                mast_raised_N_radioButton.setSelected(true);
 
                             }
 
