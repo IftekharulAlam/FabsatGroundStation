@@ -6,10 +6,12 @@
 package fabsatgroundstation;
 
 import gnu.io.CommPortIdentifier;
+import java.io.File;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +28,8 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,8 +74,6 @@ public class MyFileController implements Initializable {
 
     @FXML
     private ComboBox comPortComboBox;
-    @FXML
-    private TextField sendDataField;
     @FXML
     private RadioButton modeF;
     @FXML
@@ -154,13 +156,24 @@ public class MyFileController implements Initializable {
     private Label gps_longitude_label;
     @FXML
     private Label gps_lattitude_label2;
+    @FXML
+    private ComboBox comboBox_command;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+        comboBox_command.getItems().addAll(
+                "CMD,1041,CX,ON",
+                "CMD,1041,CX,OFF",
+                "CMD,1041,ST,13:35:39",
+                "CMD,1041,SIM,ENABLE",
+                "CMD,1041,SIM,DISABLE",
+                "CMD,1041,SIM,ACTIVATE",
+                "CMD,1041,CAL,ON"
+        );
         comPortComboBox.getItems().clear();
         // TODO
         Enumeration portList = null;
@@ -195,6 +208,7 @@ public class MyFileController implements Initializable {
 
     @FXML
     private void sendButtonClicked(ActionEvent event) {
+
     }
 
     @FXML
@@ -378,6 +392,19 @@ public class MyFileController implements Initializable {
 
     @FXML
     private void fileSelectButton(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = new Stage();
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+    }
+
+    @FXML
+    private void filesaveButton(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = new Stage();
+
+        File selectedFile = fileChooser.showSaveDialog(stage);
     }
 
 }
